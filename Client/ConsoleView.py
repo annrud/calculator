@@ -3,7 +3,7 @@ import sys
 
 
 class View:
-    """Ввод данных пользователем"""
+    """Ввод данных пользователем."""
 
     def __init__(self) -> None:
         self.calc = None
