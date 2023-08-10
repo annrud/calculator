@@ -74,7 +74,7 @@ class Presenter:
         cash = self.view.get_number('Введите количество денег в рублях: ')
         cash_calc = CashCalculator(cash)
         while True:
-            action = self.view.get_choice('Выберите : ', self.MENU_CASH)
+            action = self.view.get_choice('Выберите: ', self.MENU_CASH)
             if action == '1':
                 purchase = input('Приобретение: ')
                 spent = self.view.get_number(
