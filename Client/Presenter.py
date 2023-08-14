@@ -51,21 +51,21 @@ class Presenter:
         kcal_calc = CaloriesCalculator(kcal)
         while True:
             action = self.view.get_choice('Выберите : ', self.MENU_KCAL)
-            if action == '1':
-                food = input('Что съели: ')
-                eaten = self.view.get_number('Сколько ккал было в еде: ')
-                record = Record(amount=eaten, comment=food)
-                kcal_calc.add_record(record)
-                print('Спасибо, запись добавлена')
-            if action == '2':
-                print(kcal_calc.get_today_stats())
-                continue
-            if action == '3':
-                print(kcal_calc.get_week_stats())
-                continue
-            if action == '4':
-                print(kcal_calc.get_calories_remained())
-                continue
+            match action:
+                case '1':
+                    food = input('Что съели: ')
+                    eaten = self.view.get_number('Сколько ккал было в еде: ')
+                    record = Record(amount=eaten, comment=food)
+                    kcal_calc.add_record(record)
+                    print('Спасибо, запись добавлена')
+                case '2':
+                    print(kcal_calc.get_today_stats())
+                case '3':
+                    print(kcal_calc.get_week_stats())
+                case '4':
+                    print(kcal_calc.get_calories_remained())
+                case _:
+                    break
 
     def choice_cash(self) -> None:
         currency = self.MENU_CURRENCY[self.view.get_choice(
@@ -75,21 +75,20 @@ class Presenter:
         cash_calc = CashCalculator(cash)
         while True:
             action = self.view.get_choice('Выберите : ', self.MENU_CASH)
-            if action == '1':
-                purchase = input('Приобретение: ')
-                spent = self.view.get_number(
-                    'Введите количество потраченных денег в рублях: '
-                )
-                record = Record(amount=spent, comment=purchase)
-                cash_calc.add_record(record)
-                print('Спасибо, запись добавлена')
-                continue
-            if action == '2':
-                print(cash_calc.get_today_stats())
-                continue
-            if action == '3':
-                print(cash_calc.get_week_stats())
-                continue
-            if action == '4':
-                print(cash_calc.get_today_cash_remained(currency))
-                continue
+            match action:
+                case '1':
+                    purchase = input('Приобретение: ')
+                    spent = self.view.get_number(
+                        'Введите количество потраченных денег в рублях: '
+                    )
+                    record = Record(amount=spent, comment=purchase)
+                    cash_calc.add_record(record)
+                    print('Спасибо, запись добавлена')
+                case '2':
+                    print(cash_calc.get_today_stats())
+                case '3':
+                    print(cash_calc.get_week_stats())
+                case '4':
+                    print(cash_calc.get_today_cash_remained(currency))
+                case _:
+                    break
